@@ -2,24 +2,41 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route('/calculator', methods=['GET'])
-def calculator():
-    num1 = int(request.args.get('num1'))
-    num2 = int(request.args.get('num2'))
-    operation = request.args.get('operation')
+@app.route("/")
+def index() -> str:
+    return "Welcome to the simple calculator server"
 
-    if operation == "+":
-        result = num1 + num2
-    elif operation == "-":
-        result = num1 - num2
-    elif operation == "*":
-        result = num1 * num2
-    elif operation == "/":
-        result = num1 / num2
-    else:
-        return "Error: Invalid operation. Supported operation are +, -, *, /"
-
+@app.route("/add")
+def addition() -> str:
+    a = float(request.args.get("a"))
+    b = float(request.args.get("b"))
+    result = a + b
     return str(result)
+
+@app.route("/subtract")
+def subtraction() -> str:
+    a = float(request.args.get("a"))
+    b = float(request.args.get("b"))
+    result = a - b
+    return str(result)
+
+@app.route("/multiply")
+def multiplication() -> str:
+    a = float(request.args.get("a"))
+    b = float(request.args.get("b"))
+    result = a * b
+    return str(result)
+
+@app.route("/divide")
+def division() -> str:
+    a = float(request.args.get("a"))
+    b = float(request.args.get("b"))
+    if b == 0:
+        return "Error: Division by zero"
+    else:
+        result = a / b
+        return str(result)
+
 
 if __name__=='__main__':
     app.run()
