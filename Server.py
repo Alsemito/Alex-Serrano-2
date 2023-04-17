@@ -2,32 +2,32 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/index")
 def index() -> str:
     return "Welcome to the simple calculator server"
 
-@app.route("/add")
+@app.route("/+")
 def addition() -> str:
     a = float(request.args.get("a"))
     b = float(request.args.get("b"))
     result = a + b
     return str(result)
 
-@app.route("/subtract")
+@app.route("/-")
 def subtraction() -> str:
     a = float(request.args.get("a"))
     b = float(request.args.get("b"))
     result = a - b
     return str(result)
 
-@app.route("/multiply")
+@app.route("/*")
 def multiplication() -> str:
     a = float(request.args.get("a"))
     b = float(request.args.get("b"))
     result = a * b
     return str(result)
 
-@app.route("/divide")
+@app.route("/")
 def division() -> str:
     a = float(request.args.get("a"))
     b = float(request.args.get("b"))
